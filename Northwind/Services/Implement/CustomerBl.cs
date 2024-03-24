@@ -1,7 +1,7 @@
 using AutoMapper;
 using Northwind.Models;
+using Northwind.Models.Dto;
 using Northwind.Repositories.Implement;
-using Northwind.Services.Dto;
 using Northwind.Services.Interface;
 
 namespace Northwind.Services.Implement;

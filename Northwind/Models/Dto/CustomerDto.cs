@@ -1,4 +1,4 @@
-namespace Northwind.Services.Dto;
+namespace Northwind.Models.Dto;
 
 public class CustomerDto
 {

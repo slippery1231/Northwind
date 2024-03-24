@@ -1,5 +1,5 @@
 using AutoMapper;
-using Northwind.Services.Dto;
+using Northwind.Models.Dto;
 
 namespace Northwind.Models.Mapper;
 
