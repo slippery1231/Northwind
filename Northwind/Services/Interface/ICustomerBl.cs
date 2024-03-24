@@ -4,5 +4,5 @@ namespace Northwind.Services.Interface;
 
 public interface ICustomerBl
 {
-    List<CustomerDto> GetCustomerList();
+    IEnumerable<CustomerDto> GetCustomerList();
 }
