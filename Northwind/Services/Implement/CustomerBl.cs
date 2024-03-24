@@ -1,8 +1,9 @@
 using Northwind.Services.Dto;
+using Northwind.Services.Interface;
 
 namespace Northwind.Services.Implement;
 
-public class CustomerBl
+public class CustomerBl : ICustomerBl
 {
     public List<CustomerDto> GetCustomerList()
     {

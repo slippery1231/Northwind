@@ -1,4 +1,2 @@
-GET https://localhost:7207/api/weather/get
-
 ### 取得客戶清單
 GET https://localhost:7207/api/customer/GetCustomerList
