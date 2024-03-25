@@ -60,4 +60,15 @@ public class CustomerController : Controller
         _customerBl.AddCustomerInfo(viewModel);
         return Ok();
     }
+
+    /// <summary>
+    /// 刪除單筆客戶資料
+    /// </summary>
+    /// <returns></returns>
+    [HttpDelete("api/customer/DeleteCustomerInfo")]
+    public IActionResult DeleteCustomerInfo(string customerId)
+    {
+        _customerBl.DeleteCustomerInfo(customerId);
+        return Ok();
+    }
 }

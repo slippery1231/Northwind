@@ -12,4 +12,6 @@ public interface ICustomerBl
     CustomerDto GetSingleCustomerInfo(string customerId);
     
     void AddCustomerInfo(CustomerViewModel viewModel);
+    
+    void DeleteCustomerInfo(string customerId);
 }

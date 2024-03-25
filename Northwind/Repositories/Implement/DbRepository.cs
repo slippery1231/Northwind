@@ -37,4 +37,9 @@ public class DbRepository : DbContext
     {
         _dbContext.Entry(entity).State = EntityState.Added;
     }
+
+    public virtual void Delete<T>(T entity) where T : class
+    {
+        _dbContext.Entry(entity).State = EntityState.Deleted;
+    }
 }

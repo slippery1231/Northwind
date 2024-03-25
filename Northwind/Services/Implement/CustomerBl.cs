@@ -43,4 +43,12 @@ public class CustomerBl : ICustomerBl
         _dbRepository.Create(toBeInsert);
         _dbRepository.Save();
     }
+
+    public void DeleteCustomerInfo(string customerId)
+    {
+        var customer = _dbRepository.GetEntityById<Customer>(customerId);
+        var map = _mapper.Map<Customer>(customer);
+        _dbRepository.Delete(map);
+        _dbRepository.Save();
+    }
 }

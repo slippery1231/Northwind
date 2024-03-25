@@ -40,3 +40,6 @@ Content-Type: application/json
   "Phone": "555-123-4567",
   "Fax": "555-987-6543"
 }
+
+### 刪除一筆客戶資料
+DELETE https://localhost:7207/api/customer/DeleteCustomerInfo?customerId=ABCDE
