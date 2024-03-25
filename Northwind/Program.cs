@@ -35,4 +35,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseExceptionHandler("/api/error");
+app.UseHsts();
+
 app.Run();
