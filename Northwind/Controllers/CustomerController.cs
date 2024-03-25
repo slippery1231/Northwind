@@ -44,6 +44,14 @@ public class CustomerController : Controller
     [HttpPut("api/customer/UpdateCustomerInfo")]
     public IActionResult UpdateCustomerInfo([FromBody] CustomerViewModel viewModel)
     {
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState.Values.SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .ToList();
+            return BadRequest(new { Message = "資料未填寫完整", Errors = errors });
+        }
+
         _customerBl.UpdateCustomerInfo(viewModel);
         return Ok();
     }
@@ -75,6 +83,11 @@ public class CustomerController : Controller
     [HttpDelete("api/customer/DeleteCustomerInfo")]
     public IActionResult DeleteCustomerInfo(string customerId)
     {
+        if (string.IsNullOrEmpty(customerId))
+        {
+            return BadRequest(new { Message = "未傳入客戶代碼" });
+        }
+
         _customerBl.DeleteCustomerInfo(customerId);
         return Ok();
     }
