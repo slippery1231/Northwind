@@ -22,9 +22,8 @@ public class CustomerController : Controller
     {
         var customerList = _customerBl.GetCustomerList();
         return Ok(customerList);
-        
     }
-    
+
     /// <summary>
     /// 取得單一客戶資料
     /// </summary>
@@ -48,7 +47,7 @@ public class CustomerController : Controller
         _customerBl.UpdateCustomerInfo(viewModel);
         return Ok();
     }
-    
+
     /// <summary>
     /// 新增一筆客戶資料
     /// </summary>
@@ -57,6 +56,14 @@ public class CustomerController : Controller
     [HttpPost("api/customer/AddCustomerInfo")]
     public IActionResult AddCustomerInfo([FromBody] CustomerViewModel viewModel)
     {
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState.Values.SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .ToList();
+            return BadRequest(new { Message = "資料未填寫完整", Errors = errors });
+        }
+
         _customerBl.AddCustomerInfo(viewModel);
         return Ok();
     }

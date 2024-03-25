@@ -1,9 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Northwind.Models.ViewModel;
 
 public class CustomerViewModel
 {
+    [Required]
     public string CustomerId { get; set; }
     
+    [Required]
     public string CompanyName { get; set; }
     
     public string ContactName { get; set; }
