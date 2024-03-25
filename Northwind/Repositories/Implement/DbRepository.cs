@@ -32,4 +32,9 @@ public class DbRepository : DbContext
     {
         return _dbContext.Find<TEntity>(id);
     }
+
+    public virtual void Create<T>(T entity) where T : class
+    {
+        _dbContext.Entry(entity).State = EntityState.Added;
+    }
 }

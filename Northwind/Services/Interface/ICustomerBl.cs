@@ -10,4 +10,6 @@ public interface ICustomerBl
     void UpdateCustomerInfo(CustomerViewModel customerViewModel);
     
     CustomerDto GetSingleCustomerInfo(string customerId);
+    
+    void AddCustomerInfo(CustomerViewModel viewModel);
 }

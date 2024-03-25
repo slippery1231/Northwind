@@ -13,6 +13,10 @@ public class CustomerController : Controller
         _customerBl = customerBl;
     }
 
+    /// <summary>
+    /// 取得客戶清單
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("api/customer/GetCustomerList")]
     public IActionResult GetCustomerList()
     {
@@ -20,6 +24,12 @@ public class CustomerController : Controller
         return Ok(customerList);
         
     }
+    
+    /// <summary>
+    /// 取得單一客戶資料
+    /// </summary>
+    /// <param name="customerId"></param>
+    /// <returns></returns>
     [HttpGet("api/customer/GetSingleCustomerInfo")]
     public IActionResult GetSingleCustomerInfo(string customerId)
     {
@@ -27,10 +37,27 @@ public class CustomerController : Controller
         return Ok(customer);
     }
 
+    /// <summary>
+    /// 更新單一筆客戶資料
+    /// </summary>
+    /// <param name="viewModel"></param>
+    /// <returns></returns>
     [HttpPut("api/customer/UpdateCustomerInfo")]
     public IActionResult UpdateCustomerInfo([FromBody] CustomerViewModel viewModel)
     {
         _customerBl.UpdateCustomerInfo(viewModel);
+        return Ok();
+    }
+    
+    /// <summary>
+    /// 新增一筆客戶資料
+    /// </summary>
+    /// <param name="viewModel"></param>
+    /// <returns></returns>
+    [HttpPost("api/customer/AddCustomerInfo")]
+    public IActionResult AddCustomerInfo([FromBody] CustomerViewModel viewModel)
+    {
+        _customerBl.AddCustomerInfo(viewModel);
         return Ok();
     }
 }

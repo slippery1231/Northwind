@@ -2,7 +2,7 @@
 GET https://localhost:7207/api/customer/GetCustomerList
 
 ### 取得單一客戶資訊
-GET https://localhost:7207/api/customer/GetSingleCustomerInfo?customerId=ALFKI
+GET https://localhost:7207/api/customer/GetSingleCustomerInfo?customerId=ABCDE
 
 ### 更新客戶資料
 PUT https://localhost:7207/api/customer/UpdateCustomerInfo
@@ -20,4 +20,23 @@ Content-Type: application/json
   "Country": "Sweden",
   "Phone": "0921-12 34 65",
   "Fax": "0921-12 34 67"
+}
+
+
+### 新增客戶資料
+POST https://localhost:7207/api/customer/AddCustomerInfo
+Content-Type: application/json
+
+{
+  "CustomerId": "ABCDE",
+  "CompanyName": "ABC Company",
+  "ContactName": "John Doe",
+  "ContactTitle": "Sales Manager",
+  "Address": "123 Main Street",
+  "City": "Anytown",
+  "Region": "Region",
+  "PostalCode": "12345",
+  "Country": "USA",
+  "Phone": "555-123-4567",
+  "Fax": "555-987-6543"
 }

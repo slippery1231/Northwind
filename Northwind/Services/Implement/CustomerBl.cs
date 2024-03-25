@@ -36,4 +36,11 @@ public class CustomerBl : ICustomerBl
         var data = _dbRepository.GetEntityById<Customer>(customerId);
         return _mapper.Map<CustomerDto>(data);
     }
+
+    public void AddCustomerInfo(CustomerViewModel viewModel)
+    {
+        var toBeInsert = _mapper.Map<Customer>(viewModel);
+        _dbRepository.Create(toBeInsert);
+        _dbRepository.Save();
+    }
 }
