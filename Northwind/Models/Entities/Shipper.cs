@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace Northwind.Models.Entities;
 
-namespace Northwind.Models;
-
-public partial class Shipper
+public class Shipper
 {
     public int ShipperId { get; set; }
 

@@ -1,2 +1,23 @@
 ### 取得客戶清單
 GET https://localhost:7207/api/customer/GetCustomerList
+
+### 取得單一客戶資訊
+GET https://localhost:7207/api/customer/GetSingleCustomerInfo?customerId=ALFKI
+
+### 更新客戶資料
+PUT https://localhost:7207/api/customer/UpdateCustomerInfo
+Content-Type: application/json
+
+{
+  "CustomerId": "BERGS",
+  "CompanyName": "Berglunds snabbköp",
+  "ContactName": "Christina Berglund",
+  "ContactTitle": "Order Administrator",
+  "Address": "Berguvsvägen 8aaa",
+  "City": "Luleå",
+  "Region": "",
+  "PostalCode": "S-958 22",
+  "Country": "Sweden",
+  "Phone": "0921-12 34 65",
+  "Fax": "0921-12 34 67"
+}
