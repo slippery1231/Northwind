@@ -1,4 +1,7 @@
+using System.Net;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Northwind.ExceptionHandler;
 using Northwind.Models;
 using Northwind.Models.Mapper;
 using Northwind.Repositories.Implement;
@@ -19,7 +22,7 @@ builder.Services.AddTransient<ICustomerBl, CustomerBl>();
 builder.Services.AddTransient<DbRepository, DbRepository>();
 
 // AutoMapper register
- builder.Services.AddAutoMapper(typeof(EntityMappingProfile));
+builder.Services.AddAutoMapper(typeof(EntityMappingProfile));
 
 
 var app = builder.Build();
@@ -35,7 +38,24 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseExceptionHandler("/api/error");
-app.UseHsts();
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+        var exception = exceptionHandlerPathFeature.Error;
+
+        if (exception is CustomerNotFoundException)
+        {
+            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            await context.Response.WriteAsync(CustomerNotFoundException.ErrorMessage);
+        }
+        else
+        {
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            await context.Response.WriteAsync(exception.Message);
+        }
+    });
+});
 
 app.Run();

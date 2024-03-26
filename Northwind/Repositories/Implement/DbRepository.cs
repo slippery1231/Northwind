@@ -28,9 +28,16 @@ public class DbRepository : DbContext
         _dbContext.SaveChanges();
     }
 
-    public TEntity GetEntityById<TEntity>(string id) where TEntity : class
+    public TEntity GetEntityById<TEntity>(string id, bool asNoTracking = false) where TEntity : class
     {
-        return _dbContext.Find<TEntity>(id);
+        var query = _dbContext.Set<TEntity>().AsQueryable();
+
+        if (asNoTracking)
+        {
+            query = query.AsNoTracking();
+        }
+
+        return query.FirstOrDefault(e => EF.Property<string>(e, "CustomerId") == id);
     }
 
     public virtual void Create<T>(T entity) where T : class
