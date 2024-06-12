@@ -25,6 +25,14 @@ public class CustomerBl : ICustomerBl
 
         return _mapper.Map<IEnumerable<CustomerDto>>(data).ToList();
     }
+    
+    //假設toggle off =>要走舊的
+    public IEnumerable<CustomerDto> GetCustomerList2()
+    {
+        var data = _dbRepository.GetAll<Customer>();
+
+        return _mapper.Map<IEnumerable<CustomerDto>>(data).ToList();
+    }
 
     public void UpdateCustomerInfo(CustomerViewModel customerViewModel)
     {

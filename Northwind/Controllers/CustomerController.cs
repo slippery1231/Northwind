@@ -1,16 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Models.ViewModel;
 using Northwind.Services.Interface;
+using Northwind.ToggleRouter;
 
 namespace Northwind.Controllers;
 
 public class CustomerController : Controller
 {
     private readonly ICustomerBl _customerBl;
+    private readonly IToggleRouter _toggleRouter;
 
-    public CustomerController(ICustomerBl customerBl)
+    public CustomerController(ICustomerBl customerBl, IToggleRouter toggleRouter)
     {
         _customerBl = customerBl;
+        _toggleRouter = toggleRouter;
     }
 
     /// <summary>
@@ -20,8 +23,18 @@ public class CustomerController : Controller
     [HttpGet("api/customer/GetCustomerList")]
     public IActionResult GetCustomerList()
     {
-        var customerList = _customerBl.GetCustomerList();
-        return Ok(customerList);
+        var isEnable = _toggleRouter.IsEnable(ReleaseToggleEnum.VN14);
+
+        if (isEnable)
+        {
+            var customerList = _customerBl.GetCustomerList();
+            return Ok(customerList);
+        }
+        else
+        {
+            var customerList = _customerBl.GetCustomerList2();
+            return Ok(customerList);
+        }
     }
 
     /// <summary>
