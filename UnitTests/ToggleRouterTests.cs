@@ -1,8 +1,8 @@
-using AutoMapper;
 using Northwind.Controllers;
 using Northwind.Services.Interface;
 using Northwind.ToggleRouter;
 using NSubstitute;
+using Xunit;
 
 namespace UnitTests;
 
@@ -18,8 +18,8 @@ public class ToggleRouterTests
 
         var customerController = new CustomerController(customerBl,toggleRouter);
 
-        var getCustomerList = customerController.GetCustomerList();
+        customerController.GetCustomerList();
 
-        customerBl.Received(1).GetCustomerList2();
+        customerBl.Received(1).GetCustomerList();
     }
 }

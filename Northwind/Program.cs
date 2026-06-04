@@ -22,7 +22,7 @@ builder.Services.AddTransient<ICustomerBl, CustomerBl>();
 builder.Services.AddTransient<DbRepository, DbRepository>();
 
 // AutoMapper register
-builder.Services.AddAutoMapper(typeof(EntityMappingProfile));
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile<EntityMappingProfile>());
 
 
 var app = builder.Build();
@@ -58,4 +58,4 @@ app.UseExceptionHandler(errorApp =>
     });
 });
 
-app.Run();
+await app.RunAsync();
